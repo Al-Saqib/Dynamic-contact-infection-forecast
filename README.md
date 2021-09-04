@@ -26,7 +26,7 @@ The framework is flexible and can intergrate a wide range of variables. However,
 ```R
 pathways = getExamplePathways()
 testing = getExampleTesting()
-pathways = left_join(pathways,tests, by = c("Ptnumber"))
+pathwaysWithTests = left_join(pathways,tests, by = c("Ptnumber"))
 ```
 
 Pathways are stored in a long format, specifcijg a patient identifer in `pathways$Ptnumber`, their location and time at that location in Ptnumber `pathways$location`, and `pathways$t` respectively, and then the data of their first positive test result in `pathways$posTestResDt`. 
