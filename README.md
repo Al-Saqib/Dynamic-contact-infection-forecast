@@ -4,7 +4,7 @@
 
 **Citation**
 
-Myall, A. C., Peach, R. L., Wan, Y., Mookerjee, S., Jauneikaite, E., Bolt, F., Price, J. R., Davies, F., Wiesse, A. Y., Holmes, A., & Barahona, M. (2021). Characterising contact in disease outbreaks via a network model of spatial-temporal proximity. *MedRxiv*, 2021.04.07.21254497. https://doi.org/10.1101/2021.04.07.21254497.
+Ashleigh Myall, James Price, Robert Peach, Mohamed Abbas, Sid Mookerjee, Isa Ahmad, Damien Ming, Nina Zhu, Farzan Ramzan, Andrea Weiße, Alison Holmes, and Mauricio Barahona *Predicting hospital-onset COVID-19 using dynamic networks of patient contact: an observational study*. medRxiv (2021).
 
 This article introduced, tested, and validated an infection forecasting tool for primary use in hospitals. The tool incorporates dynamically changing variables to make predictions for each patients risk of acquiring a disease. Specifically, our framework accounts for contact patterns, a significant driver of many infectious diseases, to capture disease aquistion risk. In the article, we deployed the forecasting tool onto hospital-onset COVID-19 infections, demonstrating both its high efficacy and generalisability.
 
@@ -37,8 +37,6 @@ pathwaysWithTests = left_join(pathways,tests, by = c("Ptnumber"))
 Pathways are stored in a long format, specifying a patient identifier in `pathways$Ptnumber`, their location and time at that location in `pathways$location`, and `pathways$t` respectively, and then the date of their first positive test result in `pathways$posTestResDt`. 
 
 In addition data in `data/staticVars.csv` can contained fixed attributes of a patient used for prediction, and data in `data/contextualVars.csv` contains background statisitics that change over time, and can also be intergrated into the prediction framework.
-
-The dataset `data/background_movement.csv` is
 
 ```R
 # Read in example patient static variables
