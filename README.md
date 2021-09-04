@@ -25,18 +25,22 @@ The framework is flexible and can intergrate a wide range of variables. However,
 
 ```R
 pathways = getExamplePathways()
+
 testing = getExampleTesting()
+
 pathwaysWithTests = left_join(pathways,tests, by = c("Ptnumber"))
 ```
 
-Pathways are stored in a long format, specifcijg a patient identifer in `pathways$Ptnumber`, their location and time at that location in Ptnumber `pathways$location`, and `pathways$t` respectively, and then the data of their first positive test result in `pathways$posTestResDt`. 
+Pathways are stored in a long format, specifying a patient identifier in `pathways$Ptnumber`, their location and time at that location in `pathways$location`, and `pathways$t` respectively, and then the date of their first positive test result in `pathways$posTestResDt`. 
+
+In addition data in `data/staticVars.csv` can contained fixed attributes of a patient used for prediction, and data in `data/contextualVars.csv` contains background statisitics that change over time, and can also be intergrated into the prediction framework.
 
 The dataset `data/background_movement.csv` is
 
 ```R
-trajectories = example_trajectories()
+staticVars = read.csv("data/staticVars.csv")
 
-traj.l <- split(trajectories , f = trajectories$patient.ID)
+contextualVars = read.csv("data/contextualVars.csv")
 ```
 
 ### Pre-process
