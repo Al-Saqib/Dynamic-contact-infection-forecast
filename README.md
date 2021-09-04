@@ -53,11 +53,14 @@ The function `getSpatialTempProx()` computes total spatial-temporal proximities 
 
 
 ```R
-edges = getSpatialTempProx(traj.l,   # list of trajectories
-                 D,                  # efffective distance matrix 
-                 beta = 0.6)         # paramter for speed of propergation
+preProRollingWind(pathwaysWithTests,  # Patient pathways with tests (when a patient become positive)
+                  staticVars,         # Static variables (i.e. age, gender, ...)
+                  contextualVars,     # Background contextual variables (hospital infection numbers)
+                  feature_n = 14,     # Time window size to compute variables over
+                  prediction_n = 7)   # Forecasting horizon
 ```
-For more individuals or larger pathways the computation will take increasingly longer:
+
+Pre-processing data over large periods of time, or with many individuals can increase copmutational expendeiture. We advice the user to experiement with the parallel implemtation of the pre-processing function, `preProRollingWindPar`.
 
 ```
 [1] "Computing proximities"
