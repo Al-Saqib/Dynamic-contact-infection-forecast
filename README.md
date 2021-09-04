@@ -84,7 +84,7 @@ The cleaned datasets are finally analysed following the paper by (i) performing 
 
 ```R
 # Univariate analysis
-netDat = uniVarAnalysis(trainTestData.l)
+uniVarAnalysis(trainTestData.l)
 
 # Run prediction model
 caret::train(Infection ~., data = trainTestData.l$train,method='rf')
