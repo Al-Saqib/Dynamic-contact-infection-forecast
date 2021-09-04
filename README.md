@@ -92,32 +92,3 @@ caret::train(Infection ~., data = trainTestData.l$train,method='rf')
 ```
 
 
-## References
-
-<div id="refs" class="references">
-
-<div id="ref-brockmann_2013">
-
-Brockmann, Dirk, and Helbing, Dirk. 2013. “The hidden geometry of complex, network-driven contagion phenomena.” science 342.6164 (2013): 1337-1342. https://science.sciencemag.org/content/342/6164/1337
-
-</div>
-
-<div id="ref-myall_2021">
-
-Myall, Ashleigh and Peach, Robert and Wan, Yu and Mookerjee,Siddharth and Jauneikaite, Elita and Bolt, Frankie and Price, James and Davies, Frances and Wiesse, Andrea and Holmes, Alison and Barahona, Mauricio. 2021. "Characterising contact in disease outbreaks via a network model of spatial-temporal proximity." medRxiv preprint. https://doi.org/10.1101/2021.04.07.21254497
-
-</div>
-
-
-<div id="ref-myall_2020">
-
-Myall, Ashleigh and Peach, Robert and Weiße, Andrea and Davies, Frances and Mookerjee, Siddharth and Holmes, Alison and Barahona, Mauricio. 2020. "Network memory in the movement of hospital patients carrying antimicrobial-resistant bacteria." arXiv preprint. https://arxiv.org/abs/2009.14480v2
-
-</div>
-
-
-<div id="ref-myall_2020">
-
-Berry, Tyrus, and Timothy Sauer. 2016. "Consistent manifold representation for topological data analysis." Foundations of Data Science. http://aimsciences.org//article/id/2556e6c9-b4b9-455a-9d9e-886ef0cd166f
-
-</div>
