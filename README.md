@@ -68,10 +68,10 @@ For more individuals or larger pathways the computation will take increasingly l
 Data pre-processing files are read in, aggregated, and cleaned, to produce final data suitable for statistical analysis.
 
 ```R
-# Loads and aggregates saved files (fixed, static and static variables)
+# Loads and aggregates saved files (fixed and static variables are read in and joined by patient-timecode IDs)
 stat.df = loadPreData()
 
-# Clean (add)
+# Clean (add infection labels)
 stat.df.clean = loadPreData(stat.df)
 
 # Prepare modelling dataset (Scale data, remove redundency, under-sample, split into train/test)
