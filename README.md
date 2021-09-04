@@ -75,7 +75,7 @@ stat.df = loadPreData()
 stat.df.clean = loadPreData(stat.df)
 
 # Prepare modelling dataset (Scale data, remove redundency, under-sample, split into train/test)
-trainTestData = PreModelData(stat.df.clean)
+trainTestData.l = PreModelData(stat.df.clean)
 ```
 
 ### Statistical analysis
