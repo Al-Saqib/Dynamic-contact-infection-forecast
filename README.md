@@ -80,18 +80,16 @@ trainTestData.l = PreModelData(stat.df.clean)
 
 ### Statistical analysis
 
-The cleaned datasets are finally analysed following the paper by (i) performing a univariate analysis over variables grouped and avergaed across patients, (ii) fitting a predictive model of disease state, and (iii) computing SHAP values over the fitted model.
+The cleaned datasets are finally analysed following the paper by (i) performing a univariate analysis over variables grouped and averaged across patients and (ii) fitting a predictive disease state model. The prediction model is implemented using `caret` and thus can be flexibly changed and compared.
 
 ```R
-# Preprocess data
-netDat = preproNet(trajectories,edges_cknn)
+# Univariate analysis
+netDat = uniVarAnalysis(trainTestData.l)
 
-# Visualise network
-visNetwork(nodes = netDat$nodes,edges = netDat$edges)
+# Run prediction model
+caret::train(Infection ~., data = train,method='rf')
+
 ```
-<p align="center">
-  <img src="images/contact_network_vis.png" width="600">
-</p>
 
 
 ### Model - risk factor deployment
