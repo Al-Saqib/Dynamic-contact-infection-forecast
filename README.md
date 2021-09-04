@@ -24,10 +24,11 @@ This repo provides an implementable example of the model proposed in *Myall et a
 The framework is flexible and can intergrate a wide range of variables. However, the main functionality relies on patient pathways, with test results (date and result) detailing when and where someone was identified as infected. We provide examples of both data which can be called using `getExamplePathways()` and `getExampleTesting()`.
 
 ```R
-pathways = getExamplePathways()
+pathways = read.csv("data/examplePathways.csv")
 
-testing = getExampleTesting()
+tests = read.csv("data/exampleTests.csv")
 
+# Join pathways with test results by patient identifier
 pathwaysWithTests = left_join(pathways,tests, by = c("Ptnumber"))
 ```
 
@@ -45,7 +46,7 @@ contextualVars = read.csv("data/contextualVars.csv")
 
 ### Pre-process
 
-The function `preProRollingWind()` is a wrapper function which is applied over a sliding time window of length `feature_n`, computing a patient contact network, and additional variables.
+The function `preProRollingWind()` is a wrapper function that is applied over a sliding time window of length `feature_n`. In sumarry, the function: (i) splits the data into windows, (ii) constructs a contact network, and then centrality of each patient across it, (iii) derives the background contextual variable for a window, and (iii) joins the patient statistics within the window with static variables.
 
 
 ```R
@@ -89,9 +90,6 @@ uniVarAnalysis(trainTestData.l)
 caret::train(Infection ~., data = trainTestData.l$train,method='rf')
 
 ```
-
-
-### Model - risk factor deployment
 
 
 ## References
