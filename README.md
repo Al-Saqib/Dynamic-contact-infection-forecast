@@ -47,7 +47,7 @@ trajectories = example_trajectories()
 traj.l <- split(trajectories , f = trajectories$patient.ID)
 ```
 
-### Computing proximity between trajectories
+### Pre-process
 
 The function `getSpatialTempProx()` computes total spatial-temporal proximities using our kernel function and returns a weighted undirected dataframe of `edges`. We measure spatial-temporal proximity between ward-time locations for every pair of individuals using our spatial-temporal distance kernel found in *Myall et al. 2021.*. The parameter beta represents a propagation speed across background movement and is specific to the pathogen under study.
 
@@ -64,20 +64,23 @@ For more individuals or larger pathways the computation will take increasingly l
   |=============================================================================================           |  89%
 ```
 
-### Graph construction with Continuous *k*-nearest neighbors (Cknn)
-
-Incorporating graph structure between data points can aid classification through the emphasis of strong relationships. Hence, to reveal stronger contacts capturing transmission, we remove weak connections by sparsifying the corresponding fully connected graph made from the `edges` in `getSpatialTempProx()`. 
-
-Although several alternative graph construction methods exist, we focus on Continuous *k*-nearest neighbors (Cknn) an extension to *k*-nearest neighbors (Berry and Timothy 2016). Implemented in the function `cknneighbors_graph`, it takes provide the fully connected `edges`, the paramter `k` for number of nearest neighbors to include, and an optinal paramter `lambda` (set by defaut to `lambda=1` if not provided), and returns a sparsified edges `edges_cknn` according to the Cknn algorithm.
+### Clean data
+Data pre-processing files are read in, aggregated, and cleaned, to produce a final data suitable for statistical analysis.
 
 ```R
-edges_cknn = cknneighbors_graph(k=3,             # parameter for k-nearest neighbors
-                                #lambda = 1,     # data point density
-                                edges = edges)   # fully connected edges
+# Loads and aggregates saved files (fixed, static and static variables)
+stat.df = loadPreData()
+
+# Clean (add)
+stat.df.clean = loadPreData(stat.df)
+
+# Prepare modelling dataset (Scale data, remove redundency, under-sample, split into train/test)
+trainTestData = PreModelData(stat.df.clean)
 ```
 
+### Statistical analysis
 
-### Visualising final contact network
+The cleaned datasets are finally analysed following the paper by (i) performing a univariate analysis over variables grouped and avergaed across patients, (ii) fitting a predictive model of disease state, and (iii) computing SHAP values over the fitted model.
 
 ```R
 # Preprocess data
