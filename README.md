@@ -63,7 +63,7 @@ preProRollingWind(pathwaysWithTests,  # Patient pathways with tests (when a pati
 Pre-processing data over large periods of time, or with many individuals can increase copmutational expendeiture. We advice the user to experiement with the parallel implemtation of the pre-processing function, `preProRollingWindPar`.
 
 ```
-[1] "Computing proximities"
+[1] "Pre-processing data"
   |=============================================================================================           |  89%
 ```
 
