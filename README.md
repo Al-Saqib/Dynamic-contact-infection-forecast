@@ -24,8 +24,10 @@ This repo provides an implementable example of the model proposed in *Myall et a
 The framework is flexible and can intergrate a wide range of variables. However, the main functionality relies on patient pathways, with test results (date and result) detailing when and where someone was identified as infected. We provide examples of both data which can be called using `getExamplePathways()` and `getExampleTesting()`.
 
 ```R
+#  Read in example patient pathways
 pathways = read.csv("data/examplePathways.csv")
 
+# Read in example patient testing results
 tests = read.csv("data/exampleTests.csv")
 
 # Join pathways with test results by patient identifier
@@ -39,9 +41,11 @@ In addition data in `data/staticVars.csv` can contained fixed attributes of a pa
 The dataset `data/background_movement.csv` is
 
 ```R
-staticVars = read.csv("data/staticVars.csv")
+# Read in example patient static variables
+staticVars = read.csv("data/exampleStaticVars.csv")
 
-contextualVars = read.csv("data/contextualVars.csv")
+# Read in example contextual variables
+contextualVars = read.csv("data/exampleContextualVars.csv")
 ```
 
 ### Pre-process
@@ -50,6 +54,7 @@ The function `preProRollingWind()` is a wrapper function that is applied over a 
 
 
 ```R
+# Run pre-proccesing over a sliding time window
 preProRollingWind(pathwaysWithTests,  # Patient pathways with tests (when a patient become positive)
                   staticVars,         # Static variables (i.e. age, gender, ...)
                   contextualVars,     # Background contextual variables (hospital infection numbers)
