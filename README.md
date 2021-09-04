@@ -65,7 +65,7 @@ For more individuals or larger pathways the computation will take increasingly l
 ```
 
 ### Clean data
-Data pre-processing files are read in, aggregated, and cleaned, to produce a final data suitable for statistical analysis.
+Data pre-processing files are read in, aggregated, and cleaned, to produce final data suitable for statistical analysis.
 
 ```R
 # Loads and aggregates saved files (fixed, static and static variables)
@@ -93,6 +93,8 @@ visNetwork(nodes = netDat$nodes,edges = netDat$edges)
   <img src="images/contact_network_vis.png" width="600">
 </p>
 
+
+### Model - risk factor deployment
 
 
 ## References
