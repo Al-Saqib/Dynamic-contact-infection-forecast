@@ -21,25 +21,17 @@ This repo provides an implementable example of the model proposed in *Myall et a
 
 ### Example data
 
-There are 2 datasets required for StEP. Firstly, is the total mobility patterns over which spatial-temporal contact is measured. Secondly are the trajectories of infected individuals under investigation.
-
-Total mobility patterns capture how diseases will spread since individuals and their person-person are a primary vector in transmission. Routes of disease spread are often dominated by a set of most probable trajectories (*Brockmann and Helbing 2013*). However, as we previously showed, heterogeneous structure existed amongst movements patterns (*Myall et al. 2020*). Probable trajectories then must be derived based on mobility which captures general patterns of movement. Specifically, we capture these most probable trajectories, `D`, which contains the shortest paths between location nodes in terms of effective distance (Brockmann and Helbing 2013). Here we can call the function `eff_dist()`, which computes matrix `D` when provided a data frame containing the weighted directed edges of total mobility patterns.
+The framework is flexible and can intergrate a wide range of variables. However, the main functionality relies on patient pathways, with test results (date and result) detailing when and where someone was identified as infected. We provide examples of both data which can be called using `getExamplePathways()` and `getExampleTesting()`.
 
 ```R
-D = eff_dist(read_csv("data/background_movement.csv")) 
+pathways = getExamplePathways()
+testing = getExampleTesting()
+pathways = left_join(pathways,tests, by = c("Ptnumber"))
 ```
 
-The dataset `data/background_movement.csv` is a simple example with 12 locations (wards) which the subsequent `trajectories` are recorded over:
+Pathways are stored in a long format, specifcijg a patient identifer in `pathways$Ptnumber`, their location and time at that location in Ptnumber `pathways$location`, and `pathways$t` respectively, and then the data of their first positive test result in `pathways$posTestResDt`. 
 
-<p align="center">
-  <img src="images/background_movement_example.png" width="400">
-</p>
-
-
-<sub>*Network visualisation of example background mobility data*</sub>
-
-The function `example_trajectories()` generates a long dataframe with 12 pre-set trajectories. Each trajectory is a series of locations (rows in the dataframe) with both a location (wards in our paper and example, but are network nodes) and a time component. For later computation, we also split the `trajectories` dataframe into a list of dataframes `traj.l` based on the `trajectories$patient.ID` column.
-
+The dataset `data/background_movement.csv` is
 
 ```R
 trajectories = example_trajectories()
@@ -49,7 +41,7 @@ traj.l <- split(trajectories , f = trajectories$patient.ID)
 
 ### Pre-process
 
-The function `getSpatialTempProx()` computes total spatial-temporal proximities using our kernel function and returns a weighted undirected dataframe of `edges`. We measure spatial-temporal proximity between ward-time locations for every pair of individuals using our spatial-temporal distance kernel found in *Myall et al. 2021.*. The parameter beta represents a propagation speed across background movement and is specific to the pathogen under study.
+The function `preProRollingWind()` is a wrapper function which is applied over a sliding time window of length `feature_n`, computing a patient contact network, and additional variables.
 
 
 ```R
@@ -60,7 +52,7 @@ preProRollingWind(pathwaysWithTests,  # Patient pathways with tests (when a pati
                   prediction_n = 7)   # Forecasting horizon
 ```
 
-Pre-processing data over large periods of time, or with many individuals can increase copmutational expendeiture. We advice the user to experiement with the parallel implemtation of the pre-processing function, `preProRollingWindPar`.
+Pre-processing data over large periods of time, or with many individuals can increase copmutational expendeiture. We advice the user to experiement with the parallel implemtation of the pre-processing function, `preProRollingWindPar()`.
 
 ```
 [1] "Pre-processing data"
