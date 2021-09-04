@@ -80,7 +80,7 @@ trainTestData.l = PreModelData(stat.df.clean)
 
 ### Statistical analysis
 
-The cleaned datasets are finally analysed following the paper by (i) performing a univariate analysis over variables grouped and averaged across patients and (ii) fitting a predictive disease state model. The prediction model is implemented using `caret` and thus can be flexibly changed and compared.
+The cleaned datasets are finally analysed following the paper by (i) performing a univariate analysis over variables grouped and averaged across patients and (ii) fitting a model to predict disease. The prediction model is implemented using `caret` and thus can be flexibly changed and compared.
 
 ```R
 # Univariate analysis
