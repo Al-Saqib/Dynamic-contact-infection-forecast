@@ -75,10 +75,10 @@ Data pre-processing files are read in, aggregated, and cleaned, to produce final
 stat.df = loadPreData()
 
 # Clean (add infection labels)
-stat.df.clean = loadPreData(stat.df)
+stat.df.clean = cleanStatData(stat.df)
 
 # Prepare modelling dataset (Scale data, remove redundency, under-sample, split into train/test)
-trainTestData.l = PreModelData(stat.df.clean)
+trainTestData.l = prepModData(stat.df.clean)
 ```
 
 ### Statistical analysis
