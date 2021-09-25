@@ -48,7 +48,7 @@ contextualVars = read.csv("data/exampleContextualVars.csv")
 
 ### Pre-process
 
-The function `preProRollingWind()` is a wrapper function that is applied over a sliding time window of length `feature_n`. In summary, the function: (i) splits the data into windows, (ii) constructs a contact network, and then centrality of each patient across it, (iii) derives the background contextual variable for a window, and (iii) joins the patient statistics within the window with static variables.
+The function `preProRollingWind()` is a wrapper function that is applied over a sliding time window of length `feature_n`. In summary, the function: (i) splits the data into windows, (ii) constructs a contact network, and then centrality of each patient across it, (iii) derives the background contextual variable for the window, and (iii) joins the patient statistics within the window with static variables.
 
 
 ```R
