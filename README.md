@@ -17,7 +17,7 @@ This article introduced, tested, and validated an infection forecasting tool for
 
 ## Repo overview
 
-This repo provides an implementable example of the model proposed in *Myall et al. 2021.*  `R/` is the folder for scripts that contain R functions. All functions are documented with [roxygen2](https://roxygen2.r-lib.org/) syntax.
+This repo provides an implementable example of the model proposed in *Myall et al. 2022.*  `R/` is the folder for scripts that contain R functions. All functions are documented with [roxygen2](https://roxygen2.r-lib.org/) syntax.
 
 ### Example data
 
