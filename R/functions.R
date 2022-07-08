@@ -400,10 +400,17 @@ getPtEnvi  = function(pathway.list,dateRange,contextualVars){
 #' @return A list of dataframes containing windowed datasets
 
 preProRollingWind = function(pathwaysWithTests,staticVars,contextualVars,feature_n,prediction_n){
-
+  
+  # -------
+  ## Enforce dates
+  pathwaysWithTests$Date = as.Date(pathwaysWithTests$Date)
+  pathwaysWithTests$Positive_test_date = as.Date(pathwaysWithTests$Positive_test_date)
+  contextualVars$Date = as.Date(contextualVars$Date)
+  
   # -------
   ## Convert pathways into a list
   path.l = getPathList(pathwaysWithTests)
+  pathways_pre_merge = bind_rows(path.l)
   
   # ----
   ##  Window time bounds
@@ -424,7 +431,9 @@ preProRollingWind = function(pathwaysWithTests,staticVars,contextualVars,feature
     # ----
     # Filter pathways list to feature period
     dateRange = seq.Date(as.Date(t_b$t_feat_start),as.Date(t_b$t_feat_end),by = "days")
-    path.l.sub = na.omit.list(lapply(path.l, function(x,dateRange){return(filterPathDates(x,dateRange))},dateRange))
+    path.l.sub = filter(pathways_pre_merge, Date %in% dateRange)
+    path.l.sub = split(path.l.sub,path.l.sub$Ptnumber)
+    
     
     # ----
     # Infectious patient dataframe, if -14 CollectionDt +10 in the 2-week period.
@@ -440,8 +449,8 @@ preProRollingWind = function(pathwaysWithTests,staticVars,contextualVars,feature
     edges = contacts
     g <- graph_from_data_frame(edges,directed = F)
     infDeg = getInfectedDegree(nodes,graph_from_data_frame(edges,directed = F))
-    infDegCentral = getInfectedDegreeCentral(nodes,edges)
-    infCloseness = getInfectedCloseness(nodes,graph_from_data_frame(edges,directed = F))
+    #infDegCentral = getInfectedDegreeCentral(nodes,edges)
+    #infCloseness = getInfectedCloseness(nodes,graph_from_data_frame(edges,directed = F))
     
     # ----
     ## Extract Length of stay
@@ -459,8 +468,8 @@ preProRollingWind = function(pathwaysWithTests,staticVars,contextualVars,feature
     colnames(staticVars)[1] = "Node"
     
     stat.df = list(infDeg,
-                   infDegCentral,
-                   infCloseness,
+                   #infDegCentral,
+                   #infCloseness,
                    ptLoS,
                    staticVars,
                    ptEnvi,
