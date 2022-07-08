@@ -4,7 +4,7 @@
 
 **Citation**
 
-Ashleigh Myall, James Price, Robert Peach, Mohamed Abbas, Sid Mookerjee, Isa Ahmad, Damien Ming, Nina Zhu, Farzan Ramzan, Andrea Weiße, Alison Holmes, and Mauricio Barahona *Predicting hospital-onset COVID-19 using dynamic networks of patient contact: an observational study*. medRxiv (2021).
+Ashleigh Myall, James Price, Robert Peach, Mohamed Abbas, Sid Mookerjee, Isa Ahmad, Damien Ming, Nina Zhu, Farzan Ramzan, Andrea Weiße, Alison Holmes, and Mauricio Barahona *Prediction of hospital-onset COVID-19 infections using dynamic networks of patient contact: an international retrospective cohort study*. Lancet Digital Health (2022).
 
 This article introduced, tested, and validated an infection forecasting tool for primary use in hospitals. The tool incorporates dynamically changing variables to make predictions for each patients risk of acquiring a disease. Specifically, our framework accounts for contact patterns, a significant driver of many infectious diseases, to capture disease aquistion risk. In the article, we deployed the forecasting tool onto hospital-onset COVID-19 infections, demonstrating both its high efficacy and generalisability.
 
