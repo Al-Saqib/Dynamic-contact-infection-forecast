@@ -60,8 +60,6 @@ preProRollingWind(pathwaysWithTests,  # Patient pathways with tests (when a pati
                   prediction_n = 7)   # Forecasting horizon
 ```
 
-Pre-processing data over extended periods or with many individuals can increase computational expenditure. We advise the user to experiment with the parallel implementation of the pre-processing function, `preProRollingWindPar()`.
-
 ```
 [1] "Pre-processing data"
   |=============================================================================================           |  89%
@@ -80,18 +78,4 @@ stat.df.clean = cleanStatData(stat.df)
 # Prepare modelling dataset (Scale data, remove redundency, under-sample, split into train/test)
 trainTestData.l = prepModData(stat.df.clean)
 ```
-
-### Statistical analysis
-
-The cleaned datasets are finally analysed following the paper by (i) performing a univariate analysis over variables grouped and averaged across patients and (ii) fitting a model to predict disease. The prediction model is implemented using `caret` and thus can be flexibly changed and compared.
-
-```R
-# Univariate analysis
-uniVarAnalysis(trainTestData.l)
-
-# Run prediction model
-caret::train(Infection ~., data = trainTestData.l$train,method='rf')
-
-```
-
 
