@@ -468,8 +468,8 @@ preProRollingWind = function(pathwaysWithTests,staticVars,contextualVars,feature
     colnames(staticVars)[1] = "Node"
     
     stat.df = list(infDeg,
-                   #infDegCentral,
-                   #infCloseness,
+                   infDegCentral,
+                   infCloseness,
                    ptLoS,
                    staticVars,
                    ptEnvi,
